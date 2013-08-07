@@ -1,0 +1,111 @@
+/* Par RemiB
+ Pour notre exemple, le coin est en haut à gauche du body, il faut donc fixer la largeur et virer les marges */
+body {width:100%; margin:0; padding:0}
+
+/* La "boite" qui contient le coin et ce que le coin révèle */
+#boiteCorne {
+ position:absolute; top:0px; right:0px; /* La boite est collée tout en haut à droite */
+ z-index:2; 
+ display:block; width:100px; height:100px; /* Dimensions initiales */
+ overflow:hidden; /* Masque tout contenu de la boite qui dépasse à l'état initial */
+ text-align:center;
+ background:#c0c0c0; /* Fixe la couleur de fond qui masquera le contenu a index inferieur */
+ -webkit-box-shadow:0px 0px 50px black;
+  -moz-box-shadow:0px 0px 50px black;
+  box-shadow:0px 0px 50px black; /* L'ombre portée de la boite = ombre portée du coin replié*/
+
+ /* Ici les propriétés qui seront animées */
+ -webkit-transition-property: top, right, width, height;
+    /*transition-property: top, right, width, height;*/
+    -moz-transition-property: top, right, width, height;
+	-o-transition-property: top, right, width, height;
+ -webkit-transition-duration: .4s, .4s, .4s, .4s;
+    /* transition-duration: .4s, .4s, .4s, .4s;*/
+    -moz-transition-duration: .4s, .4s, .4s, .4s;
+	-o-transition-duration: .4s, .4s, .4s, .4s;
+ -webkit-transition-timing-function: ease-out, ease-out, ease-out, ease-out;
+     /*transition-timing-function: ease-out, ease-out, ease-out, ease-out;*/
+    -moz-transition-timing-function: ease-out, ease-out, ease-out, ease-out;
+	-o-transition-timing-function: ease-out, ease-out, ease-out, ease-out;
+
+}
+
+
+#effetCorne {
+ position:absolute;
+ z-index:3; /* Le coin doit recouvrir le reste du contenu de la boite*/
+ /* Fond en dégradé */
+ background: -webkit-gradient(
+		linear,
+		right top, left bottom,
+		from(rgba(0,0,0,0)),
+		to(rgba(255,255,255,1)),
+		color-stop(0.5, rgba(255,255,255,0)),
+		color-stop(0.5, rgba(150,150,150,1)),
+		color-stop(0.5, rgba(150,150,150,1))
+	);
+  background: -moz-linear-gradient(
+		right top,
+		rgba(0,0,0,0),
+		rgba(255,255,255,0) 50%,
+		rgba(150,150,150,1) 50%,
+		rgba(255,255,255,1)
+	);
+
+
+ width:100px; height:100px; /* Dimensions initiales IDENTIQUES à celles de la boite*/
+ 
+ /* Ici les propriétés qui seront animées */
+ -webkit-transition-property: top, right, width, height;
+    transition-property: top, right, width, height;
+    -moz-transition-property: top, right, width, height;
+	-o-transition-property: top, right, width, height;
+ -webkit-transition-duration: .4s, .4s, .4s, .4s;
+    transition-duration: .4s, .4s, .4s, .4s;
+    -moz-transition-duration: .4s, .4s, .4s, .4s;
+	-o-transition-duration: .4s, .4s, .4s, .4s;
+ -webkit-transition-timing-function: ease-out, ease-out, ease-out, ease-out;
+    transition-timing-function: ease-out, ease-out, ease-out, ease-out;
+    -moz-transition-timing-function: ease-out, ease-out, ease-out, ease-out;
+	-o-transition-timing-function: ease-out, ease-out, ease-out, ease-out;
+ 
+}
+
+
+/* Au survol, on change les dimensions du coin ET de la boite (cible de l'animation) */
+#boiteCorne:hover, #effetCorne:hover { width:200px; height:200px; }
+
+
+/* Le contenu caché derriere le coin qui sera révélé */
+#boiteCorne p {
+ position:absolute; right:0; top:0;
+ display:block;
+ margin:0; padding:0;
+ width:200px; height:200px; /* Dimensions égales aux dimensions cibles */
+ 
+  background: -webkit-gradient(
+		linear,
+		right top, left bottom,
+		from(rgba(0,0,0,0)),
+		to(rgba(255,255,255,1)),
+		color-stop(0.75, rgba(0,0,0,1)),
+		color-stop(0, rgba(200,200,200,1)),
+		color-stop(0.25, rgba(150,150,150,1))
+	);
+	
+ background: -moz-linear-gradient(
+		left bottom,
+		rgba(0,0,0,0),
+		rgba(200,200,200,1) 75%,
+		rgba(255,255,255,1)
+	);
+ 
+ color:white; font-family:georgia; font-size:20px; font-weight:bold; text-shadow:1px 1px 2px black;  
+}
+
+
+/* Texte du site masqué par le coin */
+#lorem {
+ display:block; width:200px; height:200px;
+ position:absolute; right:0; top:0;
+}
